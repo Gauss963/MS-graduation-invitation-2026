@@ -4,12 +4,10 @@
 \usepackage[margin=5mm,paperwidth=10.5cm,paperheight=16.4cm]{geometry}
 \usepackage{fontspec}
 \usepackage{graphicx}
-\usepackage{listings}
 \usepackage{xcolor}
 \usepackage[english]{babel}
 \usepackage{pgfpages}
 \usepackage{tikz, tikzpagenodes}
-\usepackage[a4,cam,cross]{crop}
 \setmainfont{antpoltlt}[Extension=.otf, UprightFont=*-regular,
     ItalicFont=*-italic, BoldFont=*-bold, BoldItalicFont=*-bolditalic]
 \newfontfamily\garamond{EBGaramond}[Extension=.otf,
@@ -19,18 +17,13 @@
 \renewcommand{\c}[1]{{\textcolor{accent}{#1}}}
 \newcommand{\signature}{\textcolor{darkgray}{\rule{2.5cm}{.4pt}}}
 
-\pgfpagesdeclarelayout{card}{
-    \edef\pgfpageoptionheight{\the\paperheight}
-    \edef\pgfpageoptionwidth{\the\paperwidth}
-    \edef\pgfpageoptionborder{0pt}
-}{  \pgfpagesphysicalpageoptions{
-        logical pages=2, physical height=29.7cm, physical width=21.0cm
-    }\pgfpageslogicalpageoptions{2}{border shrink=\pgfpageoptionborder,
+% Print the card at actual size, centred on an A4 sheet
+\pgfpagesdeclarelayout{card}{}{
+    \pgfpagesphysicalpageoptions{
+        logical pages=1, physical height=29.7cm, physical width=21.0cm
+    }\pgfpageslogicalpageoptions{1}{
         resized width=10.5cm, resized height=16.4cm,
-        center=\pgfpoint{.25\pgfphysicalwidth}{.5\pgfphysicalheight}
-    }\pgfpageslogicalpageoptions{1}{border shrink=\pgfpageoptionborder,
-        resized width=10.5cm, resized height=16.4cm,
-        center=\pgfpoint{.75\pgfphysicalwidth}{.5\pgfphysicalheight}
+        center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}
     }
 }
 
@@ -46,7 +39,7 @@
 {\LARGE \c{I}nvitation}\\[1mm]
 {\garamond\itshape to our \c{G}raduation \c{G}roup \c{P}hoto}\\\vfill
 
-{\large Dear \c{P}rofessor,}\\[2mm]
+{\large Dear \c{P}rofessor \c{K}e,}\\[2mm]
 \begin{minipage}{\textwidth}\centering\small
     Our class graduation committee has scheduled
     the graduation group photo for
@@ -65,13 +58,5 @@
 \vfill{\garamond\LARGE\itshape\c{\&}}\\[-1mm]
 {\small \c{T}hank you for everything.}
 
-\newpage\restoregeometry %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\lstinputlisting[
-    language=TeX,morekeywords={begin,renewcommand,usepackage},
-    basicstyle=\fontsize{4.4}{5.2}\ttfamily,
-    keywordstyle=\color{accent},commentstyle=\color{darkgray}
-]{christmas-card-2021.tex} % code page / back side
-~\\[-2\baselineskip]\vfill
-{\small Typeset in Antykwa Półtawskiego and EB Garamond in \LaTeX.}
 % Based on https://github.com/Kamik423/christmas-card-2021
 \end{document}
