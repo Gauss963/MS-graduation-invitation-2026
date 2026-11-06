@@ -1,21 +1,25 @@
-% !TEX program = lualatex
+% !TEX program = xelatex  (build: tectonic -X compile christmas-card-2021.tex)
 
 \documentclass{article}
 \usepackage[margin=5mm,paperwidth=10.5cm,paperheight=16.4cm]{geometry}
 \usepackage{fontspec}
 \usepackage{graphicx}
 \usepackage{listings}
-\usepackage{luacolor}
-\usepackage[ngerman]{babel}
+\usepackage{xcolor}
+\usepackage[english]{babel}
 \usepackage{pgfpages}
 \usepackage{tikz, tikzpagenodes}
 \usepackage[a4,cam,cross]{crop}
-\setmainfont{Antykwa Poltawskiego Light}
+\setmainfont{antpoltlt}[Extension=.otf, UprightFont=*-regular,
+    ItalicFont=*-italic, BoldFont=*-bold, BoldItalicFont=*-bolditalic]
+\newfontfamily\garamond{EBGaramond}[Extension=.otf,
+    UprightFont=*-Regular, ItalicFont=*-Italic]
 
-\definecolor{christmas}{HTML}{931111}
-\renewcommand{\c}[1]{{\textcolor{christmas}{#1}}}
+\definecolor{accent}{HTML}{931111}
+\renewcommand{\c}[1]{{\textcolor{accent}{#1}}}
+\newcommand{\signature}{\textcolor{darkgray}{\rule{2.5cm}{.4pt}}}
 
-\pgfpagesdeclarelayout{christmas}{
+\pgfpagesdeclarelayout{card}{
     \edef\pgfpageoptionheight{\the\paperheight}
     \edef\pgfpageoptionwidth{\the\paperwidth}
     \edef\pgfpageoptionborder{0pt}
@@ -31,7 +35,7 @@
 }
 
 \begin{document}
-\pgfpagesuselayout{christmas}\newgeometry{margin=2cm,top=3.3cm,bottom=3cm}%
+\pgfpagesuselayout{card}\newgeometry{margin=2.4cm,top=3.2cm,bottom=2.9cm}%
 \pagenumbering{gobble}\centering%
 % www.fromoldbooks.org/Dalziel-RecordOfWork/pages/000-front-cover-good-words-1872
 % Modified to better fit the image through image enhancement.
@@ -39,29 +43,35 @@
     at (current page.center) {\includegraphics[width=.95\paperwidth]{frame}};
 \end{tikzpicture} % You are being loved <3
 
-{\LARGE \c{F}röhliche \c{W}eihnachten}\\\vfill
-{\setmainfont{EB Garamond}\LARGE\textit{\c{\&}}}\\\vfill
-{\large ein glückliches neues \c{J}ahr}\\[2mm]
-{\large wünschen \c{H}ans und \c{F}lorentine.}\\
+{\LARGE \c{I}nvitation}\\[1mm]
+{\garamond\itshape to our \c{G}raduation \c{G}roup \c{P}hoto}\\\vfill
 
-% https://www.oldbookillustrations.com/illustrations/brain-body/
-% Manually thresholded, modified and edited
-\vfill\includegraphics[height=4.75cm]{head}
+{\large Dear \c{P}rofessor,}\\[2mm]
+\begin{minipage}{\textwidth}\centering\small
+    Our class graduation committee has scheduled
+    the graduation group photo for
+\end{minipage}\\[3mm]
+{\large \c{W}ednesday, \c{N}ovember 11}\\[1mm]
+{\large 14\c{:}00 \c{--} 15\c{:}00}\\[3mm]
+\begin{minipage}{\textwidth}\centering\small
+    We would be truly honoured if you could join us,
+    so that this cherished memory includes you.
+\end{minipage}\\\vfill
 
-\vfill\begin{minipage}[c]{.8\textwidth}\centering%
-    \c{\glqq}Je kaputter die Welt draußen,
-    desto heiler muss sie zu Hause sein.\c{\grqq}\\[2mm]
-    \c{---}Reinhard Mey
-\end{minipage}
+{\garamond\itshape With gratitude,}\\[11mm]
+\signature\hfill\signature\\[12mm]
+\signature\hfill\signature\\
+
+\vfill{\garamond\LARGE\itshape\c{\&}}\\[-1mm]
+{\small \c{T}hank you for everything.}
 
 \newpage\restoregeometry %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lstinputlisting[
     language=TeX,morekeywords={begin,renewcommand,usepackage},
-    basicstyle=\tiny\ttfamily,
-    keywordstyle=\color{christmas},commentstyle=\color{darkgray}
+    basicstyle=\fontsize{4.4}{5.2}\ttfamily,
+    keywordstyle=\color{accent},commentstyle=\color{darkgray}
 ]{christmas-card-2021.tex} % code page / back side
 ~\\[-2\baselineskip]\vfill
 {\small Typeset in Antykwa Półtawskiego and EB Garamond in \LaTeX.}
-% The source code and the images are available on
-% https://github.com/Kamik423/christmas-card-2021
+% Based on https://github.com/Kamik423/christmas-card-2021
 \end{document}

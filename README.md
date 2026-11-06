@@ -1,4 +1,15 @@
-# Christmas Card 2021
+# Graduation Photo Invitation
+
+Invitation for our teachers to join the graduation group photo (Wed, Nov 11, 14:00–15:00),
+with four lines for hand-written signatures. Adapted from a Christmas card.
+
+Build with [tectonic](https://tectonic-typesetting.github.io/):
+
+```bash
+tectonic -X compile christmas-card-2021.tex
+```
+
+## Original Christmas Card 2021
 
 ![image](photo.jpeg)
 
