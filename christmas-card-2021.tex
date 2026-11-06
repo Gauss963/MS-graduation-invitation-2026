@@ -17,13 +17,17 @@
 \renewcommand{\c}[1]{{\textcolor{accent}{#1}}}
 \newcommand{\signature}{\textcolor{darkgray}{\rule{2.5cm}{.4pt}}}
 
-% Print the card at actual size, centred on an A4 sheet
+% A4 landscape, folded in half: card on the right (front cover),
+% seal on the left (back cover). Each half is A5 (14.8 x 21 cm).
 \pgfpagesdeclarelayout{card}{}{
     \pgfpagesphysicalpageoptions{
-        logical pages=1, physical height=29.7cm, physical width=21.0cm
+        logical pages=2, physical height=21.0cm, physical width=29.7cm
     }\pgfpageslogicalpageoptions{1}{
-        resized width=10.5cm, resized height=16.4cm,
-        center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}
+        resized width=14.8cm, resized height=19.6cm,
+        center=\pgfpoint{.75\pgfphysicalwidth}{.5\pgfphysicalheight}
+    }\pgfpageslogicalpageoptions{2}{
+        resized width=14.8cm, resized height=19.6cm,
+        center=\pgfpoint{.25\pgfphysicalwidth}{.5\pgfphysicalheight}
     }
 }
 
@@ -58,5 +62,9 @@
 \vfill{\garamond\LARGE\itshape\c{\&}}\\[-1mm]
 {\small \c{T}hank you for everything.}
 
+\newpage %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[remember picture, overlay] \node[anchor=center]
+    at (current page.center) {\includegraphics[width=3.25cm]{seal}};
+\end{tikzpicture} % back cover
 % Based on https://github.com/Kamik423/christmas-card-2021
 \end{document}
